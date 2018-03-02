@@ -10,6 +10,7 @@ public class RotHandDisplay : MonoBehaviour
     [SerializeField]
     Vector2 range;
 
+
     private void Update()
     {
         rotableUI.SetActive(transform.localRotation.z >= range.x &&
