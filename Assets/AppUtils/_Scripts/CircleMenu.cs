@@ -13,6 +13,11 @@ public class CircleMenu : MonoBehaviour
     [SerializeField]
     List<Transform> directionList;
 
+    [SerializeField]
+    float animationTime;
+    [SerializeField]
+    float stopDistance;
+
     IEnumerator animate;
 
     private void Awake()
@@ -56,18 +61,47 @@ public class CircleMenu : MonoBehaviour
         buttons[1].localPosition = directionList[1].localPosition;
         buttons[2].localPosition = directionList[0].localPosition;*/
 
-        animate = AnimateButton(0.001f);
+        animate = AnimateButton(animationTime);
         StartCoroutine(animate); 
     }
 
     IEnumerator AnimateButton(float time)
     {
-        while (Vector3.Distance(buttons[0].localPosition, directionList[0].localPosition) > 0.02f)
+        float distanceA = Vector3.Distance(buttons[0].localPosition,
+            directionList[0].localPosition);
+        float distanceB = Vector3.Distance(buttons[1].localPosition,
+            directionList[1].localPosition);
+        float distanceC = Vector3.Distance(buttons[2].localPosition,
+            directionList[2].localPosition);
+
+        while (distanceA > stopDistance | distanceB > stopDistance | distanceC > stopDistance)
         {
-            Debug.Log("dude im working");
-            buttons[0].Translate(directionList[0].localPosition *
-                3f * Time.deltaTime);
+            distanceA = Vector3.Distance(buttons[0].localPosition,
+                directionList[0].localPosition);
+            distanceB = Vector3.Distance(buttons[1].localPosition,
+                directionList[1].localPosition);
+            distanceC = Vector3.Distance(buttons[2].localPosition,
+                directionList[2].localPosition);
+
+            if (distanceA > stopDistance)
+            {
+                AnimateSomething(buttons[0], directionList[0]);
+            }
+            if (distanceB > stopDistance)
+            {
+                AnimateSomething(buttons[1], directionList[1]);
+            }
+            if (distanceC > stopDistance)
+            {
+                AnimateSomething(buttons[2], directionList[2]);
+            }
             yield return new WaitForSeconds(time);
         }
+    }
+
+    void AnimateSomething(Transform a, Transform target)
+    {
+        a.Translate(target.localPosition *
+                    3f * Time.deltaTime);
     }
 }
