@@ -55,6 +55,7 @@ public class CircleMenu : MonoBehaviour
         /*buttons[0].localPosition = directionList[2].localPosition;
         buttons[1].localPosition = directionList[1].localPosition;
         buttons[2].localPosition = directionList[0].localPosition;*/
+
         animate = AnimateButton(0.001f);
         StartCoroutine(animate); 
     }
