@@ -5,6 +5,16 @@ using UnityEngine;
 public class VRbutton : MonoBehaviour
 {
     GameManager gm;
+    [SerializeField]
+    Transform objectSelected;
+
+    public Transform ObjectSelected
+    {
+        get
+        {
+            return objectSelected;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +31,7 @@ public class VRbutton : MonoBehaviour
 
     public virtual void Click()
     {
+        gm.Target = objectSelected;
         gm.Aud.PlayOneShot(gm.ButtonBeepSFX);
         Debug.Log("Click");
     }

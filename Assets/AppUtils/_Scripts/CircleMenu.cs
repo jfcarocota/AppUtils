@@ -27,8 +27,7 @@ public class CircleMenu : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(animate);
-        //Debug.Log(animate);
+        
     }
 
     private void OnDrawGizmos()
@@ -57,9 +56,6 @@ public class CircleMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        /*buttons[0].localPosition = directionList[2].localPosition;
-        buttons[1].localPosition = directionList[1].localPosition;
-        buttons[2].localPosition = directionList[0].localPosition;*/
 
         animate = AnimateButton(animationTime);
         StartCoroutine(animate); 

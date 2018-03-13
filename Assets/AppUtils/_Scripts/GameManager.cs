@@ -10,6 +10,15 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     AudioClip buttonBeepSFX;
+    [SerializeField]
+    ScaleControl scaleControl;
+
+    public Transform Target
+    {
+        get { return scaleControl.TargetSelected; }
+        set { scaleControl.TargetSelected = value; }
+    }
+
 
     public AudioClip ButtonBeepSFX
     {

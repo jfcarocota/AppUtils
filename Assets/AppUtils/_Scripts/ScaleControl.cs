@@ -31,7 +31,7 @@ public class ScaleControl : MonoBehaviour
     float pinchBdistance;
 
     [SerializeField]
-    Transform[] targetSelected;
+    Transform targetSelected;
 
     [SerializeField]
     Transform target;
@@ -41,6 +41,19 @@ public class ScaleControl : MonoBehaviour
 
     Vector3 initialSize;
     float initialScaleFactor;
+
+    public Transform TargetSelected
+    {
+        get
+        {
+            return targetSelected;
+        }
+
+        set
+        {
+            targetSelected = value;
+        }
+    }
 
     private void Update()
     {
@@ -56,7 +69,7 @@ public class ScaleControl : MonoBehaviour
             if (!target)
             {
                 initialScaleFactor = Vector3.Distance(scaleA.position, scaleB.position);
-                target = targetSelected[0];
+                target = targetSelected;
                 initialSize = target.transform.localScale;
                 GameObject myObj = (GameObject)Instantiate(target.gameObject, Vector3.zero, Quaternion.identity);
                 character = myObj.GetComponent<Character>();
